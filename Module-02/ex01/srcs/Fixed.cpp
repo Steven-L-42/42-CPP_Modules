@@ -1,0 +1,84 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 10:23:32 by slippert          #+#    #+#             */
+/*   Updated: 2023/12/13 16:07:16 by slippert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/Fixed.hpp"
+
+Fixed::Fixed() : _value(0)
+{
+	std::cout
+	<< "Default constructor called"
+	<< std::endl;
+}
+
+Fixed::Fixed(const Fixed &copy)
+{
+	std::cout
+	<< "Copy constructor called"
+	<< std::endl;
+	*this = copy;
+}
+
+Fixed::Fixed(const int newInt) : _value(newInt * (1 << Fixed::fractionalBits))
+{
+	std::cout
+	<< "Int constructor called"
+	<< std::endl;
+}
+
+Fixed::Fixed(const float newFloat) : _value(roundf(newFloat * (1 << Fixed::fractionalBits)))
+{
+	std::cout
+	<< "Float constructor called"
+	<< std::endl;
+}
+
+Fixed::~Fixed()
+{
+	std::cout
+	<< "Destructor called"
+	<< std::endl;
+}
+
+int Fixed::getRawBits(void) const
+{
+	return (_value);
+}
+
+void Fixed::setRawBits(int const raw)
+{
+	this->_value = raw;
+}
+
+Fixed &Fixed::operator=(const Fixed& other)
+{
+	std::cout
+	<< "Copy assignment operator called"
+	<< std::endl;
+	_value = other.getRawBits();
+	return (*this);
+}
+
+std::ostream &operator<<(std::ostream &stream, const Fixed &nbr)
+{
+	stream << nbr.toFloat();
+	return stream;
+}
+
+float Fixed::toFloat(void) const
+{
+	return (float)this->_value / (float)(1 << Fixed::fractionalBits);
+}
+
+int Fixed::toInt(void) const
+{
+	return this->_value >> Fixed::fractionalBits;
+}
