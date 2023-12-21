@@ -26,17 +26,17 @@ Understanding Inheritance.
 ### • [Module 04](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-04)
 Exploring Subtype Polymorphism, Abstract Classes, and Interfaces.
 
-### • Module 05
+### • [Module 05](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-05) - *{ soon }* 
 Handling Repetition and Exceptions.
 
-### • Module 06
+### • [Module 06](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-06) - *{ soon }* 
 Mastering C++ Casts.
 
-### • Module 07
+### • [Module 07](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-07) - *{ soon }* 
 Working with C++ Templates.
 
-### • Module 08
+### • [Module 08](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-08) - *{ soon }* 
 Dealing with Templated Containers, Iterators, and Algorithms.
 
-### • Module 09
+### • [Module 09](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-09) - *{ soon }* 
 Exploring the Versatility of STL for Enhanced C++ Programming. STL stands for "Standard Template Library" in C++.
