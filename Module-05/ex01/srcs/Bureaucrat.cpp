@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 16:08:02 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/14 18:09:29 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/14 18:18:11 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,9 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& src) {
 	os << "Name:	" << src.getName() << " ";
 	os << "Level:	" << src.getGrade();
 	return os;
+}
+
+void Bureaucrat::signForm(Form &ref)
+{
+	ref.beSigned(*this);
 }
