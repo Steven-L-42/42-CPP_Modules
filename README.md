@@ -5,7 +5,7 @@
 ## Overview
 This repository showcases my solutions for the C++ modules in the 42 Cursus, designed for learning the language.
 
-**Status:** 5/10 Completed ✅
+**Status:** 6/10 Completed ✅
 
 **Results:** 100% in all 5/10 modules ⭐️⭐️⭐️⭐️⭐️
 
@@ -26,7 +26,7 @@ Understanding Inheritance.
 ### • [Module 04](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-04)
 Exploring Subtype Polymorphism, Abstract Classes, and Interfaces.
 
-### • [Module 05](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-05) - *{ in progress }*
+### • [Module 05](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-05)
 Handling Repetition and Exceptions.
 
 ### • [Module 06](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-06) - *{ soon }*
