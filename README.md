@@ -29,7 +29,7 @@ Exploring Subtype Polymorphism, Abstract Classes, and Interfaces.
 ### • [Module 05](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-05)
 Handling Repetition and Exceptions.
 
-### • [Module 06](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-06) - *{ soon }*
+### • [Module 06](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-06) - *{ in progress }*
 Mastering C++ Casts.
 
 ### • [Module 07](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-07) - *{ soon }*
