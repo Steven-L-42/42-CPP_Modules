@@ -1,44 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:16:26 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/15 14:01:52 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/15 15:19:40 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Form.hpp"
+#include "../includes/AForm.hpp"
 
-Form::Form() : name("noname"), req_grade(150), req_ex_grade(150),
+AForm::AForm() : name("noname"), req_grade(150), req_ex_grade(150),
 	is_signed(false)
 {
 }
 
-Form::Form(const Form &ref) : name(ref.name), req_grade(ref.req_grade),
+AForm::AForm(const AForm &ref) : name(ref.name), req_grade(ref.req_grade),
 	req_ex_grade(ref.req_ex_grade), is_signed(false)
 {
 	if (this->GetExecGrade() > 150 || this->GetGrade() > 150)
-		throw(Form::GradeTooLowException());
+		throw(AForm::GradeTooLowException());
 	else if (this->GetExecGrade() < 1 || this->GetGrade() < 1)
-		throw(Form::GradeTooHighException());
+		throw(AForm::GradeTooHighException());
 }
 
-Form::Form(std::string _name, int _req_grade, int _req_ex_grade) : name(_name),
-	req_grade(_req_grade), req_ex_grade(_req_ex_grade), is_signed(false)
+AForm::AForm(std::string _name, int _req_grade,
+	int _req_ex_grade) : name(_name), req_grade(_req_grade),
+	req_ex_grade(_req_ex_grade), is_signed(false)
 {
 	if (this->GetExecGrade() > 150 || this->GetGrade() > 150)
-		throw(Form::GradeTooLowException());
+		throw(AForm::GradeTooLowException());
 	else if (this->GetExecGrade() < 1 || this->GetGrade() < 1)
-		throw(Form::GradeTooHighException());
+		throw(AForm::GradeTooHighException());
 }
 
-void Form::beSigned(Bureaucrat &ref)
+void AForm::beSigned(Bureaucrat &ref)
 {
 	if (ref.getGrade() > this->GetGrade())
-		throw(Form::GradeTooLowException());
+		throw(AForm::GradeTooLowException());
 	else if (this->GetSign() == false)
 	{
 		this->is_signed = true;
@@ -47,48 +48,62 @@ void Form::beSigned(Bureaucrat &ref)
 	else
 		std::cout << ref.getName() << " couldn't sign " << this->GetName() << " because it is already signed." << std::endl;
 }
-Form::~Form()
+
+AForm::~AForm()
 {
 }
 
-Form &Form::operator=(const Form &ref)
+AForm &AForm::operator=(const AForm &ref)
 {
 	*this = ref;
 	return (*this);
 }
 
-const char *Form::GradeTooHighException::what() const throw()
+const char *AForm::NotSignedException::what() const throw()
+{
+	return ("Your form is not signed");
+}
+
+const char *AForm::GradeTooHighException::what() const throw()
 {
 	return ("Your grade is to high");
 }
 
-const char *Form::GradeTooLowException::what() const throw()
+const char *AForm::GradeTooLowException::what() const throw()
 {
 	return ("Your grade is to low");
 }
 
-const std::string &Form::GetName(void) const
+const std::string &AForm::GetName(void) const
 {
 	return (this->name);
 }
-const bool Form::GetSign(void) const
+const bool AForm::GetSign(void) const
 {
 	return (this->is_signed);
 }
-const int Form::GetGrade(void) const
+const int AForm::GetGrade(void) const
 {
 	return (this->req_grade);
 }
-const int Form::GetExecGrade(void) const
+const int AForm::GetExecGrade(void) const
 {
 	return (this->req_ex_grade);
 }
 
-std::ostream &operator<<(std::ostream &os, const Form &ref)
+std::ostream &operator<<(std::ostream &os, const AForm &ref)
 {
 	os << "Form Name: " << ref.GetName();
 	os << ".	signed state: " << (ref.GetSign() ? "true" : "false");
 	os << ".	Required Grade is: " << ref.GetGrade();
 	os <<  ".	Required Exec Grade is " << ref.GetExecGrade() << ".";
 	return (os);
+}
+void AForm::execute(Bureaucrat const &executor) const
+{
+	if (this->GetSign() == false)
+		throw(AForm::NotSignedException());
+	if (this->GetExecGrade() < executor.getGrade())
+		throw(AForm::GradeTooLowException());
+	this->action();
 }

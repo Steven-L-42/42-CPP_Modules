@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 12:09:31 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/15 13:39:39 by slippert         ###   ########.fr       */
+/*   Created: 2024/01/15 14:02:39 by slippert          #+#    #+#             */
+/*   Updated: 2024/01/15 15:25:23 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "AForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
-class RobotomyRequestForm : public AForm
+class Intern
 {
   private:
   public:
-	RobotomyRequestForm();
-	RobotomyRequestForm(std::string home);
-	RobotomyRequestForm(const RobotomyRequestForm &ref);
-	RobotomyRequestForm &operator=(const RobotomyRequestForm &ref);
-	~RobotomyRequestForm();
-	virtual void action() const;
+	Intern();
+	Intern(const Intern &ref);
+	Intern &operator=(const Intern &ref);
+	~Intern();
+	AForm *makeForm(std::string formName, std::string formTarget);
+	class NotExistingFormException : public std::exception
+	{
+		public:
+			virtual const char *what() const throw();
+	};
 };
