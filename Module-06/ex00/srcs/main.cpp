@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:01:17 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/16 17:45:47 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/19 14:15:35 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 int main(int argc, char **argv)
 {
+	if (argc != 2)
+	{
+		std::cerr << "Usage: ./convert ARGUMENT" << std::endl;
+		return (1);
+	}
 	std::string input(argv[1]);
-	ScalarConverter scal(input);
-
-	// scal.convert(input);
-
+	ScalarConverter scal;
+	scal.convert(input);
 	return (0);
 }

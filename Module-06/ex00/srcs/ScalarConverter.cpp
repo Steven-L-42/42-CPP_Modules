@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 18:02:26 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/16 18:42:34 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/19 10:04:57 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,12 @@ ScalarConverter::~ScalarConverter()
 {
 }
 
-template <typename T>
-T ScalarConverter::convert(const std::string &literal)
+
+void ScalarConverter::convert(const std::string &literal)
 {
-	T res;
-
-	// if (isChar)
-
-	return (res);
+	ConvertHelper helper(literal);
+	helper.Preset();
+	helper.Convert();
+	helper.PrintResults();
 }
 

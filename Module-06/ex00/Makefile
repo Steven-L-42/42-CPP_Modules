@@ -1,10 +1,10 @@
-NAME		=	scalar
+NAME		=	convert
 
 COMPILE		=	c++
 
 FLAGS		=	-Wall -Werror -Wextra -std=c++98
 
-SRCS		=	main.cpp ScalarConverter.cpp
+SRCS		=	main.cpp ScalarConverter.cpp ConvertHelper.cpp
 
 OBJS		=	$(addprefix srcs/, $(SRCS:.cpp=.o))
 
