@@ -5,9 +5,9 @@
 ## Overview
 This repository showcases my solutions for the C++ modules in the 42 Cursus, designed for learning the language.
 
-**Status:** 6/10 Completed ✅
+**Status:** 8/10 Completed ✅
 
-**Results:** 100% in all 5/10 modules ⭐️⭐️⭐️⭐️⭐️
+**Results:** 100% in all 8/10 modules ⭐️⭐️⭐️⭐️⭐️
 
 ## Modules
 
@@ -29,13 +29,13 @@ Exploring Subtype Polymorphism, Abstract Classes, and Interfaces.
 ### • [Module 05](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-05)
 Handling Repetition and Exceptions.
 
-### • [Module 06](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-06) - *{ in progress }*
+### • [Module 06](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-06)
 Mastering C++ Casts.
 
-### • [Module 07](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-07) - *{ soon }*
+### • [Module 07](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-07)
 Working with C++ Templates.
 
-### • [Module 08](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-08) - *{ soon }*
+### • [Module 08](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-08) - *{ in progress }*
 Dealing with Templated Containers, Iterators, and Algorithms.
 
 ### • [Module 09](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-09) - *{ soon }*
