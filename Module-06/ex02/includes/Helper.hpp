@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   Helper.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/20 14:20:51 by slippert         ###   ########.fr       */
+/*   Created: 2024/01/20 15:00:58 by slippert          #+#    #+#             */
+/*   Updated: 2024/01/20 15:23:02 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-
-#include "ConvertHelper.hpp"
 #include <iostream>
+#include <cstdlib>
+#include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
-class ConvertHelper;
+class Base;
 
-class ScalarConverter
+
+class Helper
 {
-  private:
-	const std::string input;
-	ScalarConverter();
-  public:
-	ScalarConverter(const std::string _input);
-	ScalarConverter(const ScalarConverter &ref);
-	ScalarConverter &operator=(const ScalarConverter &ref);
-	~ScalarConverter();
-	static void convert(const std::string &literal);
+	private:
+	public:
+		Helper();
+		Helper(const Helper &ref);
+		Helper &operator=(const Helper &ref);
+		~Helper();
+		Base * generate(void);
+		void identify(Base* p);
+		void identify(Base& p);
 };

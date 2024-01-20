@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   Data.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/20 14:20:51 by slippert         ###   ########.fr       */
+/*   Created: 2024/01/20 14:07:10 by slippert          #+#    #+#             */
+/*   Updated: 2024/01/20 14:38:23 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "../includes/Data.hpp"
 
-#include "ConvertHelper.hpp"
-#include <iostream>
-
-class ConvertHelper;
-
-class ScalarConverter
+Data::Data()
 {
-  private:
-	const std::string input;
-	ScalarConverter();
-  public:
-	ScalarConverter(const std::string _input);
-	ScalarConverter(const ScalarConverter &ref);
-	ScalarConverter &operator=(const ScalarConverter &ref);
-	~ScalarConverter();
-	static void convert(const std::string &literal);
-};
+}
+
+Data::Data(std::string _notify) : notify(_notify)
+{
+}
+
+Data::Data(const Data &ref)
+{
+}
+
+Data &Data::operator=(const Data &ref)
+{
+	*this = ref;
+	return (*this);
+}
+
+Data::~Data()
+{
+}

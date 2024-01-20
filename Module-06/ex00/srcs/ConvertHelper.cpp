@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 18:02:26 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/19 14:23:23 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/20 14:02:40 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,14 @@ void ConvertHelper::Preset()
 		|| input == "-inf" || input == "-inff" || input == "nan" || input == "nanf")
 	{
 		isSpecial = true;
+		if (input == "nanf")
+			input = "nan";
 		if (input == "inf")
 		{
 			input = "+inf";
 			isDouble = true;
 		}
-		if (input == "-inf" || input == "+inf")
+		if (input == "-inf" || input == "+inf" || input == "nan")
 			isDouble = true;
 
 		if (input == "inff")
@@ -96,7 +98,7 @@ void ConvertHelper::ToChar()
 			if (tmp_i >= 0 && tmp_i <= 32 || tmp_i == 127)
 			{
 				charIssue = true;
-				char_Issue = " Non displayable";
+				char_Issue = "Non displayable";
 				return ;
 			}
 			char_con = static_cast<char>(tmp_i);
@@ -155,10 +157,12 @@ void ConvertHelper::ToFloat()
 	char tmp[input.size() + 1];
 	strcpy(tmp, input.c_str());
 	double tmp_d = strtod(input.c_str(), NULL);
-	if (tmp_d > FLT_MAX || tmp_d < FLT_MIN)
+	if (tmp_d > FLT_MAX || tmp_d < -FLT_MAX)
 	{
+
 		floatIssue = true;
 		float_Issue = "impossible";
+		std::cout << float_Issue << std::endl;
 	}
 	else
 		float_con = static_cast<float>(std::atof(tmp));
@@ -174,7 +178,7 @@ void ConvertHelper::ToDouble()
 	char tmp[input.size() + 1];
 	strcpy(tmp, input.c_str());
 	long double tmp_ld = strtold(input.c_str(), NULL);
-	if (tmp_ld > DBL_MAX || tmp_ld < DBL_MIN)
+	if (tmp_ld > DBL_MAX || tmp_ld < -DBL_MAX)
 	{
 		doubleIssue = true;
 		double_Issue = "impossible";
