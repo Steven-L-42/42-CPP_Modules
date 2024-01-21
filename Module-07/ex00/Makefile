@@ -14,14 +14,14 @@ $(NAME) : $(OBJS)
 		$(COMPILE) $(FLAGS) -o $(NAME) $(OBJS)
 
 clean:
-		rm -rf $(OBJS)
+		@rm -rf $(OBJS)
 
 fclean:	clean
-		rm -rf $(NAME)
+		@rm -rf $(NAME)
 
 re:		fclean all
 
 test:
 		@make
-		@make clean
-		@./scalar
+		@./$(NAME)
+		@make fclean

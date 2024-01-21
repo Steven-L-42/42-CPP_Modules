@@ -6,12 +6,11 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:46:12 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/20 19:22:41 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/21 14:24:52 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Span.hpp"
-#include <algorithm>
 
 Span::Span() : maxNumbers(0)
 {

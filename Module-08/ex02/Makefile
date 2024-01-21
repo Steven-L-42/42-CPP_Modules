@@ -1,10 +1,10 @@
-NAME		=	span
+NAME		=	mstack
 
 COMPILE		=	c++
 
 FLAGS		=	-Wall -Werror -Wextra -std=c++98
 
-SRCS		=	main.cpp Span.cpp
+SRCS		=	main.cpp
 
 OBJS		=	$(addprefix srcs/, $(SRCS:.cpp=.o))
 

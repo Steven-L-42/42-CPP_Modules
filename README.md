@@ -5,9 +5,9 @@
 ## Overview
 This repository showcases my solutions for the C++ modules in the 42 Cursus, designed for learning the language.
 
-**Status:** 8/10 Completed ✅
+**Status:** 9/10 Completed ✅
 
-**Results:** 100% in all 8/10 modules ⭐️⭐️⭐️⭐️⭐️
+**Results:** 100% in all 5/10 modules ⭐️⭐️⭐️⭐️⭐️
 
 ## Modules
 
@@ -35,8 +35,8 @@ Mastering C++ Casts.
 ### • [Module 07](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-07)
 Working with C++ Templates.
 
-### • [Module 08](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-08) - *{ in progress }*
+### • [Module 08](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-08)
 Dealing with Templated Containers, Iterators, and Algorithms.
 
-### • [Module 09](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-09) - *{ soon }*
+### • [Module 09](https://github.com/Steven-L-42/42-CPP_Modules/tree/main/Module-09) - *{ in progress }*
 Exploring the Versatility of STL for Enhanced C++ Programming. STL stands for "Standard Template Library" in C++.

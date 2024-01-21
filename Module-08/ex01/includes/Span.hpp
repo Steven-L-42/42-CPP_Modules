@@ -6,12 +6,13 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/20 19:20:49 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/21 14:24:55 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <cmath>

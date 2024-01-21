@@ -14,15 +14,15 @@ $(NAME):		$(OBJS)
 				$(COMPILE) $(FLAGS) -o $(NAME) $(OBJS)
 
 clean:
-				rm -rf $(OBJS)
+		@rm -rf $(OBJS)
 
-fclean:			clean
-				rm -rf $(NAME)
+fclean:	clean
+		@rm -rf $(NAME)
 
-re:				fclean all
+re:		fclean all
 
 test:
-				@make
-				@rm -rf $(OBJS)
-				@clear
-				@./Bureaucrat
+		@make
+		@./$(NAME)
+		@make fclean
+
