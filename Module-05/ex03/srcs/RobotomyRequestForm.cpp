@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:39:24 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/15 13:39:42 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:25:15 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ void RobotomyRequestForm::action() const
 	if (clock() % 2)
 		std::cout << GetName() << " has been robotomized successfully 50\% of the time." << std::endl;
 	else
-		std::cout << "robotomy failed!" << std::endl;
+		std::cout << red << "robotomy failed!" << reset << std::endl;
 }

@@ -23,5 +23,6 @@ re:		fclean all
 
 test:
 		@make
+		@clear
 		@./$(NAME)
 		@make fclean

@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:16:26 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/15 14:01:55 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:50:17 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,23 @@ AForm &AForm::operator=(const AForm &ref)
 
 const char *AForm::NotSignedException::what() const throw()
 {
-	return ("Your form is not signed");
+	std::string error = red + std::string("your form is not signed") + reset;
+	const char *message = error.c_str();
+	return (message);
 }
 
 const char *AForm::GradeTooHighException::what() const throw()
 {
-	return ("Your grade is to high");
+	std::string error = red + std::string("your grade is too high") + reset;
+	const char *message = error.c_str();
+	return (message);
 }
 
 const char *AForm::GradeTooLowException::what() const throw()
 {
-	return ("Your grade is to low");
+	std::string error = red + std::string("your grade is too low") + reset;
+	const char *message = error.c_str();
+	return (message);
 }
 
 const std::string &AForm::GetName(void) const
@@ -99,6 +105,7 @@ std::ostream &operator<<(std::ostream &os, const AForm &ref)
 	os <<  ".	Required Exec Grade is " << ref.GetExecGrade() << ".";
 	return (os);
 }
+
 void AForm::execute(Bureaucrat const &executor) const
 {
 	if (this->GetSign() == false)

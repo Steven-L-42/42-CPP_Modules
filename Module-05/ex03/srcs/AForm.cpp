@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:16:26 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/15 15:19:40 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:35:45 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,23 @@ AForm &AForm::operator=(const AForm &ref)
 
 const char *AForm::NotSignedException::what() const throw()
 {
-	return ("Your form is not signed");
+	std::string error = red + std::string("your form is not signed") + reset;
+	const char *message = error.c_str();
+	return (message);
 }
 
 const char *AForm::GradeTooHighException::what() const throw()
 {
-	return ("Your grade is to high");
+	std::string error = red + std::string("your grade is too high") + reset;
+	const char *message = error.c_str();
+	return (message);
 }
 
 const char *AForm::GradeTooLowException::what() const throw()
 {
-	return ("Your grade is to low");
+	std::string error = red + std::string("your grade is too low") + reset;
+	const char *message = error.c_str();
+	return (message);
 }
 
 const std::string &AForm::GetName(void) const

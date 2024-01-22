@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 16:08:00 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/15 15:35:36 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:24:23 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@
 #include "../includes/RobotomyRequestForm.hpp"
 #include "../includes/ShrubberyCreationForm.hpp"
 
-#define red "\033[1;31m"
-#define green "\033[1;32m"
-#define reset "\033[0m"
-
 int	main(void)
 {
 	Intern	someRandomIntern;
@@ -29,7 +25,7 @@ int	main(void)
 	std::cout << green << "\nTEST START : Robotomy\n" << reset << std::endl;
 	try
 	{
-		forms[0] = someRandomIntern.makeForm("robotomy requestion", "Bender");
+		forms[0] = someRandomIntern.makeForm("robotomy requestion", "Bender_Robo");
 	}
 	catch (std::exception &e)
 	{
@@ -37,7 +33,7 @@ int	main(void)
 	}
 	try
 	{
-		forms[0] = someRandomIntern.makeForm("robotomy request", "Bender");
+		forms[0] = someRandomIntern.makeForm("robotomy request", "Bender_Robo");
 		Bureaucrat Steven("Steven", 1);
 		try
 		{
@@ -66,7 +62,7 @@ int	main(void)
 	std::cout << green << "\nTEST START : Shrubbery\n" << reset << std::endl;
 	try
 	{
-		forms[0] = someRandomIntern.makeForm("shrubbery requestion", "Bender");
+		forms[0] = someRandomIntern.makeForm("shrubbery requestion", "Bender_Shrub");
 	}
 	catch (std::exception &e)
 	{
@@ -74,7 +70,7 @@ int	main(void)
 	}
 	try
 	{
-		forms[1] = someRandomIntern.makeForm("shrubbery request", "Bender2");
+		forms[1] = someRandomIntern.makeForm("shrubbery request", "Bender_Shrub");
 		Bureaucrat Steven("Steven", 75);
 		try
 		{
@@ -103,8 +99,7 @@ int	main(void)
 	std::cout << green << "\nTEST START : Presidential\n" << reset << std::endl;
 	try
 	{
-		forms[0] = someRandomIntern.makeForm("presidential requestion",
-				"Bender");
+		forms[0] = someRandomIntern.makeForm("presidential requestion", "Bender_Pres");
 	}
 	catch (std::exception &e)
 	{
@@ -112,7 +107,7 @@ int	main(void)
 	}
 	try
 	{
-		forms[2] = someRandomIntern.makeForm("presidential request", "Bender3");
+		forms[2] = someRandomIntern.makeForm("presidential request", "Bender_Pres");
 		Bureaucrat Steven("Steven", 3);
 		try
 		{

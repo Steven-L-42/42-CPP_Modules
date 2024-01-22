@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 16:08:04 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/15 12:21:56 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:09:08 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 #include <iostream>
 #include "AForm.hpp"
+
+#define blue "\033[2;34m"
+#define orange "\033[2;33m"
+#define red "\033[2;31m"
+#define green "\033[2;32m"
+#define reset "\033[0m"
 
 class AForm;
 

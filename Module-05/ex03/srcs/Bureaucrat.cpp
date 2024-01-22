@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 16:08:02 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/15 14:01:40 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:29:24 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,28 +48,36 @@ void Bureaucrat::IncrementGrade()
 {
 	if (this->grade > 1)
 		this->grade -= 1;
+	else
+		throw (Bureaucrat::GradeTooHighException());
 }
 
 void Bureaucrat::DecrementGrade()
 {
 	if (this->grade < 150)
 		this->grade += 1;
+	else
+		throw (Bureaucrat::GradeTooLowException());
 }
 
-const char*	Bureaucrat::GradeTooHighException::what() const throw()
+const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("your grade is too high");
+	std::string error = red + std::string("your grade is too high") + reset;
+	const char *message = error.c_str();
+	return (message);
 }
 
-const char*	Bureaucrat::GradeTooLowException::what() const throw()
+const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("your grade is too low");
+	std::string error = red + std::string("your grade is too low") + reset;
+	const char *message = error.c_str();
+	return (message);
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& src) {
 	os << "Bureucrat Name: " << src.getName() << ".";
 	os << "	Level: " << src.getGrade() << ".";
-	return os;
+	return (os);
 }
 
 void Bureaucrat::signForm(AForm &ref)

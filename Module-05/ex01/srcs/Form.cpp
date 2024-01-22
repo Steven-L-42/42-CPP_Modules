@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:16:26 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/15 14:01:52 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:47:50 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,16 @@ Form &Form::operator=(const Form &ref)
 
 const char *Form::GradeTooHighException::what() const throw()
 {
-	return ("Your grade is to high");
+	std::string error = red + std::string("your grade is too high") + reset;
+	const char *message = error.c_str();
+	return (message);
 }
 
 const char *Form::GradeTooLowException::what() const throw()
 {
-	return ("Your grade is to low");
+	std::string error = red + std::string("your grade is too low") + reset;
+	const char *message = error.c_str();
+	return (message);
 }
 
 const std::string &Form::GetName(void) const
