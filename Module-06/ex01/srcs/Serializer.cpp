@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 14:07:10 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/23 15:47:36 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:58:33 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ Serializer::Serializer()
 {
 }
 
-Serializer::Serializer(const Serializer &ref)
-{
-}
+// Serializer::Serializer(const Serializer &ref)
+// {
+// }
 
-Serializer &Serializer::operator=(const Serializer &ref)
-{
-	*this = ref;
-	return (*this);
-}
+// Serializer &Serializer::operator=(const Serializer &ref)
+// {
+// 	*this = ref;
+// 	return (*this);
+// }
 
 Serializer::~Serializer()
 {

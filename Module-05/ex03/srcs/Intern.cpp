@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:29:50 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/22 13:32:44 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:08:35 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ Intern::Intern()
 {
 }
 
-Intern::Intern(const Intern &ref)
-{
-}
+// Intern::Intern(const Intern &ref)
+// {
+// }
 
 Intern::~Intern()
 {
 }
 
-Intern &Intern::operator=(const Intern &ref)
-{
-	*this = ref;
-	return (*this);
-}
+// Intern &Intern::operator=(const Intern &ref)
+// {
+// 	*this = ref;
+// 	return (*this);
+// }
 
 const char *Intern::NotExistingFormException::what() const throw()
 {

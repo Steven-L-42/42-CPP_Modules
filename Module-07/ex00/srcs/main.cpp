@@ -6,14 +6,14 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:01:17 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/20 17:35:02 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:47:58 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/whatever.hpp"
 #include <iostream>
 
-int main(int argc, char **argv)
+int main(void)
 {
 	int a = 2;
 	int b = 3;

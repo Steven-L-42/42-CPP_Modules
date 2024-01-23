@@ -6,19 +6,18 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:16:26 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/22 13:35:45 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:08:08 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/AForm.hpp"
 
-AForm::AForm() : name("noname"), req_grade(150), req_ex_grade(150),
-	is_signed(false)
+AForm::AForm() : name("noname"), is_signed(false), req_grade(150), req_ex_grade(150)
 {
 }
 
-AForm::AForm(const AForm &ref) : name(ref.name), req_grade(ref.req_grade),
-	req_ex_grade(ref.req_ex_grade), is_signed(false)
+AForm::AForm(const AForm &ref) : name(ref.name), is_signed(false), req_grade(ref.req_grade),
+	req_ex_grade(ref.req_ex_grade)
 {
 	if (this->GetExecGrade() > 150 || this->GetGrade() > 150)
 		throw(AForm::GradeTooLowException());
@@ -27,8 +26,8 @@ AForm::AForm(const AForm &ref) : name(ref.name), req_grade(ref.req_grade),
 }
 
 AForm::AForm(std::string _name, int _req_grade,
-	int _req_ex_grade) : name(_name), req_grade(_req_grade),
-	req_ex_grade(_req_ex_grade), is_signed(false)
+	int _req_ex_grade) : name(_name), is_signed(false), req_grade(_req_grade),
+	req_ex_grade(_req_ex_grade)
 {
 	if (this->GetExecGrade() > 150 || this->GetGrade() > 150)
 		throw(AForm::GradeTooLowException());
@@ -53,11 +52,11 @@ AForm::~AForm()
 {
 }
 
-AForm &AForm::operator=(const AForm &ref)
-{
-	*this = ref;
-	return (*this);
-}
+// AForm &AForm::operator=(const AForm &ref)
+// {
+// 	*this = ref;
+// 	return (*this);
+// }
 
 const char *AForm::NotSignedException::what() const throw()
 {
@@ -84,15 +83,15 @@ const std::string &AForm::GetName(void) const
 {
 	return (this->name);
 }
-const bool AForm::GetSign(void) const
+ bool AForm::GetSign(void) const
 {
 	return (this->is_signed);
 }
-const int AForm::GetGrade(void) const
+ int AForm::GetGrade(void) const
 {
 	return (this->req_grade);
 }
-const int AForm::GetExecGrade(void) const
+ int AForm::GetExecGrade(void) const
 {
 	return (this->req_ex_grade);
 }

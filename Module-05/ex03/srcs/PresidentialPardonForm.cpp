@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:39:53 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/15 13:59:22 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:08:14 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &ref
 {
 }
 
-PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &ref)
-{
-	*this = ref;
-	return (*this);
-}
+// PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &ref)
+// {
+// 	*this = ref;
+// 	return (*this);
+// }
 
 PresidentialPardonForm::~PresidentialPardonForm()
 {

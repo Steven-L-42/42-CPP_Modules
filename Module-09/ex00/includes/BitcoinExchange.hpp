@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/23 13:45:38 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:12:02 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ BitcoinExchange::BitcoinExchange(std::string &_input) : input(_input)
 	StartExchange();
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &ref) {}
+// BitcoinExchange::BitcoinExchange(const BitcoinExchange &ref) {}
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &ref)
 {

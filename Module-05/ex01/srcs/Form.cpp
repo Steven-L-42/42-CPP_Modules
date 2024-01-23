@@ -6,19 +6,17 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:16:26 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/22 12:47:50 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:04:03 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Form.hpp"
 
-Form::Form() : name("noname"), req_grade(150), req_ex_grade(150),
-	is_signed(false)
+Form::Form() : name("noname"), is_signed(false), req_grade(150), req_ex_grade(150)
 {
 }
 
-Form::Form(const Form &ref) : name(ref.name), req_grade(ref.req_grade),
-	req_ex_grade(ref.req_ex_grade), is_signed(false)
+Form::Form(const Form &ref) : name(ref.name), is_signed(false), req_grade(ref.req_grade), req_ex_grade(ref.req_ex_grade)
 {
 	if (this->GetExecGrade() > 150 || this->GetGrade() > 150)
 		throw(Form::GradeTooLowException());
@@ -27,7 +25,7 @@ Form::Form(const Form &ref) : name(ref.name), req_grade(ref.req_grade),
 }
 
 Form::Form(std::string _name, int _req_grade, int _req_ex_grade) : name(_name),
-	req_grade(_req_grade), req_ex_grade(_req_ex_grade), is_signed(false)
+																   is_signed(false), req_grade(_req_grade), req_ex_grade(_req_ex_grade)
 {
 	if (this->GetExecGrade() > 150 || this->GetGrade() > 150)
 		throw(Form::GradeTooLowException());
@@ -51,11 +49,11 @@ Form::~Form()
 {
 }
 
-Form &Form::operator=(const Form &ref)
-{
-	*this = ref;
-	return (*this);
-}
+// Form &Form::operator=(const Form &ref)
+// {
+// 	*this = ref;
+// 	return (*this);
+// }
 
 const char *Form::GradeTooHighException::what() const throw()
 {
@@ -75,15 +73,15 @@ const std::string &Form::GetName(void) const
 {
 	return (this->name);
 }
-const bool Form::GetSign(void) const
+bool Form::GetSign(void) const
 {
 	return (this->is_signed);
 }
-const int Form::GetGrade(void) const
+int Form::GetGrade(void) const
 {
 	return (this->req_grade);
 }
-const int Form::GetExecGrade(void) const
+int Form::GetExecGrade(void) const
 {
 	return (this->req_ex_grade);
 }
@@ -93,6 +91,6 @@ std::ostream &operator<<(std::ostream &os, const Form &ref)
 	os << "Form Name: " << ref.GetName();
 	os << ".	signed state: " << (ref.GetSign() ? "true" : "false");
 	os << ".	Required Grade is: " << ref.GetGrade();
-	os <<  ".	Required Exec Grade is " << ref.GetExecGrade() << ".";
+	os << ".	Required Exec Grade is " << ref.GetExecGrade() << ".";
 	return (os);
 }

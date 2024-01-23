@@ -6,12 +6,12 @@ SRCS		=	main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.c
 
 OBJS		=	$(addprefix $(SRCS_F), $(SRCS:.cpp=.o))
 
-CC			=	c++
+CC			:=	c++
 
-FLAGS		=	-Wall -Wextra -Werror -std=c++98
+CXXFLAGS	:=	-Wall -Wextra -Werror -std=c++98
 
 $(NAME):	$(OBJS)
-			$(CC) $(FLAGS) -o $(NAME) $(OBJS)
+			$(CC) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
 all:		$(NAME)
 

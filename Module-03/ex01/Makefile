@@ -1,8 +1,8 @@
 NAME		=	scavtrap
 
-COMPILE		=	c++
+CC			:=	c++
 
-FLAGS		=	-Wall -Werror -Wextra -std=c++98
+CXXFLAGS	:=	-Wall -Werror -Wextra -std=c++98
 
 SRCS_F		=	srcs/
 
@@ -11,7 +11,7 @@ SRCS		=	main.cpp ClapTrap.cpp ScavTrap.cpp
 OBJS		=	$(addprefix $(SRCS_F), $(SRCS:%.cpp=%.o))
 
 $(NAME):	$(OBJS)
-			$(COMPILE) $(FLAGS) -o $(NAME) $(OBJS)
+			$(CC) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
 all:		$(NAME)
 

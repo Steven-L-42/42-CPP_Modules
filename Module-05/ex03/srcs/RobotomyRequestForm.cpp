@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:39:24 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/22 13:25:15 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:08:19 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &ref) : AForm
 {
 }
 
-RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &ref)
-{
-	*this = ref;
-	return (*this);
-}
+// RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &ref)
+// {
+// 	*this = ref;
+// 	return (*this);
+// }
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {

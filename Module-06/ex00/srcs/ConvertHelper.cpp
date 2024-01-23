@@ -6,29 +6,29 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 18:02:26 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/23 15:52:09 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:56:29 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ConvertHelper.hpp"
 
-ConvertHelper::ConvertHelper()
-{
-}
+// ConvertHelper::ConvertHelper()
+// {
+// }
 
 ConvertHelper::ConvertHelper(const std::string _input) : input(_input)
 {
 }
 
-ConvertHelper::ConvertHelper(const ConvertHelper &ref)
-{
-}
+// ConvertHelper::ConvertHelper(const ConvertHelper &ref)
+// {
+// }
 
-ConvertHelper &ConvertHelper::operator=(const ConvertHelper &ref)
-{
-	*this = ref;
-	return (*this);
-}
+// ConvertHelper &ConvertHelper::operator=(const ConvertHelper &ref)
+// {
+// 	*this = ref;
+// 	return (*this);
+// }
 
 ConvertHelper::~ConvertHelper()
 {
@@ -109,7 +109,7 @@ void ConvertHelper::ToChar()
 				char_Issue = "impossible";
 				return;
 			}
-			if (tmp_i >= 0 && tmp_i <= 32 || tmp_i == 127)
+			if ((tmp_i >= 0 && tmp_i <= 32) || tmp_i == 127)
 			{
 				charIssue = true;
 				char_Issue = "Non displayable";
@@ -117,7 +117,7 @@ void ConvertHelper::ToChar()
 			}
 			char_con = static_cast<char>(tmp_i);
 		}
-		else if (countchars == input.size())
+		else if ((size_t)countchars == input.size())
 		{
 			if (countchars == 1)
 			{

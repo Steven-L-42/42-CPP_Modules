@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 14:07:10 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/23 15:49:07 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:59:16 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 Helper::Helper()
 {}
 
-Helper::Helper(const Helper &ref)
-{}
+// Helper::Helper(const Helper &ref)
+// {}
 
 Helper::~Helper()
 {}
 
-Helper &Helper::operator=(const Helper &ref)
-{
-	*this = ref;
-	return (*this);
-}
+// Helper &Helper::operator=(const Helper &ref)
+// {
+// 	*this = ref;
+// 	return (*this);
+// }
 
 Base *Helper::generate(void)
 {

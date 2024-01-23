@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:38:50 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/15 13:39:12 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:06:19 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &ref) :
 {
 }
 
-ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &ref)
-{
-	*this = ref;
-	return (*this);
-}
+// ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &ref)
+// {
+// 	*this = ref;
+// 	return (*this);
+// }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {

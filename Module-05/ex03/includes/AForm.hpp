@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:09:08 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/15 12:41:48 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:06:55 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 #include "Bureaucrat.hpp"
 
-class	Bureaucrat;
+class Bureaucrat;
 
 class AForm
 {
-  private:
+private:
 	const std::string name;
 	bool is_signed;
 	const int req_grade;
 	const int req_ex_grade;
 
-  public:
+public:
 	AForm();
 	AForm(const AForm &ref);
 	AForm &operator=(const AForm &ref);
@@ -32,23 +32,23 @@ class AForm
 	AForm(std::string _name, int _req_grade, int _req_ex_grade);
 	class GradeTooHighException : public std::exception
 	{
-		public:
+	public:
 		virtual const char *what() const throw();
 	};
 	class GradeTooLowException : public std::exception
 	{
-		public:
+	public:
 		virtual const char *what() const throw();
 	};
 	class NotSignedException : public std::exception
 	{
-		public:
+	public:
 		virtual const char *what() const throw();
 	};
 	const std::string &GetName() const;
-	const bool GetSign() const;
-	const int GetGrade() const;
-	const int GetExecGrade() const;
+	bool GetSign() const;
+	int GetGrade() const;
+	int GetExecGrade() const;
 	void beSigned(Bureaucrat &ref);
 
 	virtual void execute(Bureaucrat const &executor) const;

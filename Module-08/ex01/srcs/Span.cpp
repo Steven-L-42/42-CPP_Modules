@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:46:12 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/21 14:24:52 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:11:10 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ Span &Span::operator=(const Span &ref)
 	{
 		arr.clear();
 		arr = std::vector<int>(ref.maxNumbers);
-		for (size_t i = 0; i < ref.maxNumbers; i++)
+		for (size_t i = 0; i < static_cast<size_t>(ref.maxNumbers); i++)
 		{
 			arr[i] = ref.arr[i];
 		}
@@ -46,7 +46,7 @@ void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterat
 {
 	size_t dst = std::distance(begin, end);
 
-	if (arr.size() + dst > maxNumbers)
+	if (arr.size() + dst > static_cast<size_t>(maxNumbers))
 		throw std::runtime_error("Exceeded maximum capacity");
 
 	arr.insert(arr.end(), begin, end);
@@ -54,7 +54,7 @@ void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterat
 
 void Span::addNumber(int number)
 {
-	if (arr.size() >= maxNumbers)
+	if (arr.size() >= static_cast<size_t>(maxNumbers))
 		throw std::runtime_error("Exceeded maximum capacity");
 	arr.push_back(number);
 }

@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:01:17 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/23 15:18:54 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:58:22 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #define green "\033[1;32m"
 #define reset "\033[0m"
 
-int main(int argc, char **argv)
+int main(void)
 {
 	{
 		std::cout << green << "\nSTART TEST" << reset << std::endl;

@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:09:08 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/23 11:13:34 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:01:52 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ class Form
 			virtual const char *what() const throw();
 	};
 	const std::string &GetName() const;
-	const bool GetSign() const;
-	const int GetGrade() const;
-	const int GetExecGrade() const;
+	bool GetSign() const;
+	int GetGrade() const;
+	int GetExecGrade() const;
 	void beSigned(Bureaucrat &ref);
 };
 
