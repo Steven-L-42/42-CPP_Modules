@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:01:17 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/20 14:53:09 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 15:18:54 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 int main(int argc, char **argv)
 {
 	{
-		std::cout << green << "\nSTART TEST #1" << reset << std::endl;
+		std::cout << green << "\nSTART TEST" << reset << std::endl;
 		Serializer serial;
-		Data data("String Test #1");
+		Data data("String Test");
 
 		uintptr_t Serialized = serial.serialize(&data);
 

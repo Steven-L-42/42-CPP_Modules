@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 18:02:26 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/20 14:02:40 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 15:52:09 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void ConvertHelper::Preset()
 	intIssue = false;
 	floatIssue = false;
 	doubleIssue = false;
-	if (input == "inf" || input == "+inf" || input == "inff" || input == "+inff"
-		|| input == "-inf" || input == "-inff" || input == "nan" || input == "nanf")
+	if (input == "inf" || input == "+inf" || input == "inff" || input == "+inff" || input == "-inf" || input == "-inff" || input == "nan" || input == "nanf")
 	{
 		isSpecial = true;
 		if (input == "nanf")
@@ -65,12 +64,13 @@ void ConvertHelper::Preset()
 		}
 		if (input == "-inff" || input == "+inff")
 			isFloat = true;
-
 	}
 	else
 		isSpecial = false;
 }
 
+// static_cast : Ein Typumwandlungen zur Kompilierzeit.
+// Er wird verwendet, um bekannte und sichere Typkonvertierungen durchzuführen.
 void ConvertHelper::ToChar()
 {
 	if (input.size() >= 1)
@@ -78,13 +78,27 @@ void ConvertHelper::ToChar()
 		char tmp[input.size() + 1];
 		strcpy(tmp, input.c_str());
 		bool alldigit = true;
-		int countchars  = 0;
+		int countchars = 0;
+
 		for (std::string::iterator it = input.begin(); it != input.end(); ++it)
 		{
 			if (!std::isdigit(*it) && *it != 'f' && *it != '.')
 				alldigit = false;
-			if (std::isalpha(*it))
+			if (static_cast<unsigned char>(*it) >= 0 && static_cast<unsigned char>(*it) <= 127)
 				countchars++;
+		}
+		if (input[0] == 'f' || input[0] == '.')
+			alldigit = false;
+		if (!alldigit)
+		{
+			for (std::string::iterator it = input.begin(); it != input.end(); ++it)
+			{
+				if (static_cast<unsigned char>(*it) < 0 || static_cast<unsigned char>(*it) > 127)
+				{
+					isStringOrEmpty = true;
+					return;
+				}
+			}
 		}
 		if (alldigit)
 		{
@@ -93,13 +107,13 @@ void ConvertHelper::ToChar()
 			{
 				charIssue = true;
 				char_Issue = "impossible";
-				return ;
+				return;
 			}
 			if (tmp_i >= 0 && tmp_i <= 32 || tmp_i == 127)
 			{
 				charIssue = true;
 				char_Issue = "Non displayable";
-				return ;
+				return;
 			}
 			char_con = static_cast<char>(tmp_i);
 		}
@@ -131,9 +145,8 @@ void ConvertHelper::ToInt()
 {
 	if (isChar)
 	{
-
 		int_con = static_cast<int>(char_con);
-		return ;
+		return;
 	}
 	char tmp[input.size() + 1];
 	strcpy(tmp, input.c_str());
@@ -152,7 +165,7 @@ void ConvertHelper::ToFloat()
 	if (isChar)
 	{
 		float_con = static_cast<float>(char_con);
-		return ;
+		return;
 	}
 	char tmp[input.size() + 1];
 	strcpy(tmp, input.c_str());
@@ -173,7 +186,7 @@ void ConvertHelper::ToDouble()
 	if (isChar)
 	{
 		double_con = static_cast<double>(char_con);
-		return ;
+		return;
 	}
 	char tmp[input.size() + 1];
 	strcpy(tmp, input.c_str());
@@ -190,7 +203,7 @@ void ConvertHelper::ToDouble()
 void ConvertHelper::Convert()
 {
 	if (isSpecial)
-		return ;
+		return;
 	ToChar();
 	ToInt();
 	ToFloat();
@@ -224,8 +237,8 @@ void ConvertHelper::PrintResults()
 
 		std::cout << "Char: " << (charIssue ? char_Issue : "'" + std::string(1, char_con) + "'") << std::endl;
 		std::cout << "Int: " << (intIssue ? int_Issue : std::to_string(int_con)) << std::endl;
-		std::cout << "Float: " << (floatIssue ? float_Issue : (float_con_str.find('.') != std::string::npos ? float_con_str + "f" : float_con_str + ".0f"))  << std::endl;
-		std::cout << "Double: " << (doubleIssue ? double_Issue : (double_con_str.find('.') != std::string::npos ? double_con_str : double_con_str + ".0"))  << std::endl;
+		std::cout << "Float: " << (floatIssue ? float_Issue : (float_con_str.find('.') != std::string::npos ? float_con_str + "f" : float_con_str + ".0f")) << std::endl;
+		std::cout << "Double: " << (doubleIssue ? double_Issue : (double_con_str.find('.') != std::string::npos ? double_con_str : double_con_str + ".0")) << std::endl;
 	}
 	else
 	{
@@ -234,5 +247,4 @@ void ConvertHelper::PrintResults()
 		std::cout << "Float: impossible" << std::endl;
 		std::cout << "Double: impossible" << std::endl;
 	}
-
 }

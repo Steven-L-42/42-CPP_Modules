@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 16:08:02 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/22 12:34:41 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:11:10 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void Bureaucrat::IncrementGrade()
 	else
 		throw(Bureaucrat::GradeTooHighException());
 }
-#include <sstream>
 
 void Bureaucrat::DecrementGrade()
 {

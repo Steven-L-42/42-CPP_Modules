@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/21 18:10:53 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 13:45:38 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <unordered_map>
+#include <map>
 #include <string>
 #include <cctype>
 
@@ -27,16 +27,16 @@
 
 struct CSVRow
 {
-	std::string btc;
+	std::map<int, std::string> btc;
+	std::map<int, std::string> date;
 	std::string rate;
 	std::string error;
-	std::string date;
 };
 
 class BitcoinExchange
 {
 private:
-	std::unordered_map<std::string, CSVRow> data;
+	std::map<std::string, CSVRow> data;
 	std::string input;
 	BitcoinExchange();
 
@@ -85,6 +85,7 @@ void BitcoinExchange::LoadInputFile()
 		CSVRow row;
 
 		std::istringstream lineStream(line);
+		row.date.insert(std::make_pair(row.date.size(), lineStream.gcount()));
 		if (std::getline(lineStream, row.date, '|') && std::getline(lineStream, row.btc, '|'))
 		{
 			row.date = trimWhitespaces(row.date);
@@ -104,6 +105,8 @@ void BitcoinExchange::LoadInputFile()
 					row.error = "Error: not a positive number.";
 				row.date = "";
 			}
+			if (data.find(row.date) != data.end())
+				std::cout << "TEST" << row.date << std::endl;
 			std::pair<std::string, CSVRow> newRow(row.date, row);
 			data.insert(newRow);
 			// data.push_back(row);
@@ -115,11 +118,12 @@ void BitcoinExchange::LoadInputFile()
 			data.insert(newRow);
 		}
 	}
-	for (std::unordered_map<std::string, CSVRow>::iterator it = data.begin(); it != data.end(); ++it)
+	for (std::map<std::string, CSVRow>::iterator it = data.begin(); it != data.end(); ++it)
 	{
 		std::cout << it->first << " => " << it->second.btc << std::endl;
 	}
 }
+
 void BitcoinExchange::LoadExchangeRates()
 {
 	std::ifstream file;

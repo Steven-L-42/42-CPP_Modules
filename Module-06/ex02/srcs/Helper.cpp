@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 14:07:10 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/20 15:29:39 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 15:49:07 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ Base *Helper::generate(void)
 	}
 	return NULL;
 }
-
+// 'dynamic_cast' kan sicherere Typumwandlungen durchzuführen,
+// insbesondere bei der Arbeit mit polymorphen Klassen und Vererbung.
+// Im Gegensatz zu reinterpret_cast führt dynamic_cast zur Laufzeit eine Überprüfung des tatsächlichen Typs des Objekts durch.
 void Helper::identify(Base *p)
 {
 	if (dynamic_cast<A*>(p) != NULL)

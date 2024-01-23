@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:09:08 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/15 11:44:26 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:13:34 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class Form
 	bool is_signed;
 	const int req_grade;
 	const int req_ex_grade;
-
   public:
 	Form();
 	Form(const Form &ref);
