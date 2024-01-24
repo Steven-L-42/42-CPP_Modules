@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:46:12 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/23 19:11:10 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:52:37 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void Span::addNumber(int number)
 
 int Span::shortestSpan()
 {
-	int shortest = INT_MAX;
+	int shortest = std::numeric_limits<int>::max();
 	for (size_t i = 0; i < arr.size() - 1; i++)
 	{
 		for (size_t j = i + 1; j < arr.size(); j++)
@@ -75,7 +75,7 @@ int Span::shortestSpan()
 
 int Span::longestSpan()
 {
-	int longest = -INT_MAX;
+	int longest = -std::numeric_limits<int>::max();
 	for (size_t i = 0; i < arr.size() - 1; i++)
 	{
 		for (size_t j = i + 1; j < arr.size(); j++)

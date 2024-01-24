@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/23 19:12:02 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:15:49 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void BitcoinExchange::LoadExchangeRates()
 		std::cerr << "Error: could not open file." << std::endl;
 		return;
 	}
-	CSVRow row;
+	CSVRow row
 	std::string line;
 	if (std::getline(file, line))
 	{

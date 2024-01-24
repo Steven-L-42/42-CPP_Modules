@@ -6,12 +6,13 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/20 18:39:22 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:47:58 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -23,14 +24,10 @@
 template <class T>
 void easyfind(T arr, int searched)
 {
-	size_t arrSize = sizeof(arr) / sizeof(arr[0]);
-	for (size_t i = 0; i < arrSize; i++)
+	if (std::find(arr.begin(), arr.end(), searched) != arr.end())
 	{
-		if (arr[i] == searched)
-		{
-			std::cout << green << "Element found in container." << reset << std::endl;
-			return ;
-		}
+		std::cout << green << "Element found in container." << reset << std::endl;
+		return ;
 	}
 	std::cout << red << "Element not found in container." << reset << std::endl;
 }

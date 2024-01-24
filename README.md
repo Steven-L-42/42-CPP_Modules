@@ -7,7 +7,7 @@ This repository showcases my solutions for the C++ modules in the 42 Cursus, des
 
 **Status:** 9/10 Completed ✅
 
-**Results:** 100% in all 7/10 modules ⭐️⭐️⭐️⭐️⭐️
+**Results:** 100% in all 8/10 modules ⭐️⭐️⭐️⭐️⭐️
 
 ## Modules
 
