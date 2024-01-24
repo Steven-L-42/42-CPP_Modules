@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/22 11:49:55 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:15:35 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,21 @@
 template <class T>
 class MutantStack : public std::stack<T>
 {
-	public:
+public:
 	typedef typename std::stack<T>::container_type::iterator iterator;
-		MutantStack();
-		MutantStack(const MutantStack &ref);
-		MutantStack &operator=(const MutantStack &ref);
-		~MutantStack();
-		iterator begin();
-		iterator end();
+	MutantStack();
+	MutantStack(const MutantStack &ref);
+	MutantStack &operator=(const MutantStack &ref);
+	~MutantStack();
+	iterator begin();
+	iterator end();
 };
-
 
 template <class T>
 inline MutantStack<T>::MutantStack() : std::stack<T>() {}
 
-template<class T>
-inline MutantStack<T>::MutantStack(const MutantStack & ref) : std::stack<T>(ref) {}
+template <class T>
+inline MutantStack<T>::MutantStack(const MutantStack &ref) : std::stack<T>(ref) {}
 
 template <class T>
 inline MutantStack<T>::~MutantStack() {}
@@ -49,9 +48,8 @@ template <class T>
 inline MutantStack<T> &MutantStack<T>::operator=(const MutantStack<T> &ref)
 {
 	if (this != &ref)
-	{
 		std::stack<T>::operator=(ref);
-	}
+
 	return (*this);
 }
 

@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:01:17 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/21 15:29:48 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:08:49 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,47 @@ int main(void)
 
 	try
 	{
-		std::cout << blue << "\nTest AddNumber's'" << reset << std::endl;
-		Span sp = Span(10000);
+		std::cout << blue << "\n1000 Random with addNumber" << reset << std::endl;
+		Span sp = Span(1000);
 		std::vector<int> numbers;
-		numbers.push_back(256);
-		numbers.push_back(512);
-		numbers.push_back(1024);
+		std::srand(std::time(0));
+		for (size_t i = 0; i < 1000; i++)
+			numbers.push_back(rand());
 		sp.addNumbers(numbers.begin(), numbers.end());
 		std::cout << "Shortest: " << sp.shortestSpan() << std::endl;
 		std::cout << "Longest: " << sp.longestSpan() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	try
+	{
+		std::cout << blue << "\n3 with addNumbers" << reset << std::endl;
+		Span sp = Span(3);
+		std::vector<int> numbers;
+		numbers.push_back(256);
+		numbers.push_back(1024);
+		numbers.push_back(512);
+		sp.addNumbers(numbers.begin(), numbers.end());
+		std::cout << "Shortest: " << sp.shortestSpan() << std::endl;
+		std::cout << "Longest: " << sp.longestSpan() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	try
+	{
+		std::cout << blue << "\nCheck maxNumbers exception" << reset << std::endl;
+		Span sp = Span(2);
+		std::vector<int> numbers;
+		numbers.push_back(256);
+		numbers.push_back(1024);
+		numbers.push_back(512);
+		sp.addNumbers(numbers.begin(), numbers.end());
 	}
 	catch (std::exception &e)
 	{
