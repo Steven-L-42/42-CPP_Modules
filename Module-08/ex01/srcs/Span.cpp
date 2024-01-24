@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:46:12 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/24 16:55:08 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:12:52 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ Span &Span::operator=(const Span &ref)
 
 Span::~Span() {}
 
+const char *Span::NotEnoughItemsException::what() const throw()
+{
+	return ("You need at least 2 Items to calculate a Span");
+}
+
 void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end)
 {
 	size_t dst = std::distance(begin, end);
@@ -58,6 +63,8 @@ void Span::addNumber(int number)
 
 int Span::shortestSpan()
 {
+	if (arr.size() <= 1)
+		throw(NotEnoughItemsException());
 	int shortest = std::numeric_limits<int>::max();
 	for (size_t i = 0; i < arr.size() - 1; i++)
 	{
@@ -72,6 +79,8 @@ int Span::shortestSpan()
 
 int Span::longestSpan()
 {
+	if (arr.size() <= 1)
+		throw(NotEnoughItemsException());
 	std::vector<int>::iterator it_min = std::min_element(arr.begin(), arr.end());
 	std::vector<int>::iterator it_max = std::max_element(arr.begin(), arr.end());
 	return ((*it_max - *it_min));
