@@ -4,7 +4,7 @@ CC			:=	c++
 
 CXXFLAGS	:=	-Wall -Werror -Wextra -std=c++98
 
-SRCS		=	main.cpp
+SRCS		=	main.cpp BitcoinExchange.cpp
 
 OBJS		=	$(addprefix srcs/, $(SRCS:.cpp=.o))
 
@@ -22,6 +22,6 @@ fclean:	clean
 re:		fclean all
 
 test:
-		@make
+		@make re
 		@./$(NAME) input.csv
 		@make fclean
