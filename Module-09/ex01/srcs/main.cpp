@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/15 16:21:54 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/25 18:59:56 by slippert         ###   ########.fr       */
+/*   Created: 2024/01/15 21:01:17 by slippert          #+#    #+#             */
+/*   Updated: 2024/01/25 20:50:06 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "../includes/RPN.hpp"
 
-#include "../include/FragTrap.hpp"
-#include "../include/ScavTrap.hpp"
-
-class DiamondTrap : public FragTrap, public ScavTrap
+int main(int argc, char **argv)
 {
-	private:
-		std::string name;
-		DiamondTrap();
-	public:
-		DiamondTrap(std::string _Name);
-		~DiamondTrap();
-		using ScavTrap::attack;
-		void whoAmI();
-};
+	if (argc != 2)
+	{
+		std::cerr << "Error: Example usage ./RPN \"8 9 * 9 - 9 - 9 - 4 - 1 +\"." << std::endl;
+		return (1);
+	}
+	try
+	{
+		std::string input = argv[1];
+		RPN rpn;
+		rpn.Calculate(input, false);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what();
+		return (1);
+	}
+	return (0);
+}
