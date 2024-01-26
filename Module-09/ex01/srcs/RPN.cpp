@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:23:57 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/26 11:06:09 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:14:36 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ const char *RPN::ExpressionException::what() const throw()
 	return ("Error: your input contains not allowed characters!\nAllowed characters \"0123456789 +-/*\".\n");
 }
 
-bool RPN::CheckForValidInput(std::string &input)
+void RPN::CheckForValidInput(std::string &input)
 {
 	std::string allowedChars = "0123456789 +-/*";
 	for (std::string::iterator it = input.begin(); it != input.end(); it++)
 		if (allowedChars.find(*it) == std::string::npos)
-			return (false);
-	return (true);
+			throw(ExpressionException());
 }
 
 std::string RPN::RemoveWhitespaces(std::string &input)
@@ -46,16 +45,14 @@ void RPN::CreateCalcStack(std::string &input)
 	input.erase(std::remove_if(input.begin(), input.end(), ::isspace), input.end());
 
 	for (std::string::iterator it = input.begin(); it != input.end(); it++)
-	{
-		std::string singleChar(1, *it);
-		math.push(singleChar);
-	}
+		math.push(std::string(1, *it));
+	if (math.size() < 3)
+		throw(std::logic_error("Error: input requires at least 3 characters!\nExample: ./RPN \"1 2 +\"\n"));
 }
 
 void RPN::Calculate(std::string &input, bool _activeDebug)
 {
-	if (!CheckForValidInput(input))
-		throw(ExpressionException());
+	CheckForValidInput(input);
 	CreateCalcStack(input);
 	while (math.size() > 0)
 	{

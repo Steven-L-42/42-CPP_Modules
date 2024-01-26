@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/26 11:05:42 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:13:33 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ private:
 public:
 	RPN();
 	~RPN();
-	bool CheckForValidInput(std::string &input);
+	void CheckForValidInput(std::string &input);
 	void Calculate(std::string &input, bool _activeDebug);
 	void CreateCalcStack(std::string &input);
 	std::string RemoveWhitespaces(std::string &input);
