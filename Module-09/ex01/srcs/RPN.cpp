@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:23:57 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/25 20:49:30 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:06:09 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void RPN::CreateCalcStack(std::string &input)
 {
 	std::reverse(input.begin(), input.end());
 	input.erase(std::remove_if(input.begin(), input.end(), ::isspace), input.end());
+
 	for (std::string::iterator it = input.begin(); it != input.end(); it++)
 	{
 		std::string singleChar(1, *it);

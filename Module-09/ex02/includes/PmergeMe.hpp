@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RPN.hpp                                            :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/26 11:05:42 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:07:13 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,17 @@
 #define green "\033[1;32m"
 #define reset "\033[0m"
 
-class RPN
+class PmergeMe
 {
 private:
 	std::stack<std::string> math;
-	RPN(const RPN &ref);
-	RPN &operator=(const RPN &ref);
+	PmergeMe(const PmergeMe &ref);
+	PmergeMe &operator=(const PmergeMe &ref);
 
 public:
-	RPN();
-	~RPN();
+	PmergeMe();
+	~PmergeMe();
 	bool CheckForValidInput(std::string &input);
-	void Calculate(std::string &input, bool _activeDebug);
-	void CreateCalcStack(std::string &input);
 	std::string RemoveWhitespaces(std::string &input);
 	class ExpressionException : public std::exception
 	{
