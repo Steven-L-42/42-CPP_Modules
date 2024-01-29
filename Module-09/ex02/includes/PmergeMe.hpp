@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/26 11:07:13 by slippert         ###   ########.fr       */
+/*   Updated: 2024/01/29 11:10:45 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <sstream>
 #include <string>
 #include <cctype>
+#include <vector>
 
 #define blue "\033[1;34m"
 #define red "\033[1;31m"
@@ -27,7 +28,7 @@
 class PmergeMe
 {
 private:
-	std::stack<std::string> math;
+	std::vector<int> insertion;
 	PmergeMe(const PmergeMe &ref);
 	PmergeMe &operator=(const PmergeMe &ref);
 

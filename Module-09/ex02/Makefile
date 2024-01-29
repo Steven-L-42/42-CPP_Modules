@@ -24,5 +24,5 @@ re:		fclean all
 test:
 		@make re
 		@clear
-		@./$(NAME) "8 9 * 9 - 9 - 9 - 4 - 1 +"
+		@./$(NAME) 8 3 4 12 5 6
 		@make fclean
