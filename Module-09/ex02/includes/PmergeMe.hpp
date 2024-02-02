@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/29 11:10:45 by slippert         ###   ########.fr       */
+/*   Updated: 2024/02/02 12:12:46 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <string>
 #include <cctype>
 #include <vector>
+#include <queue>
 
 #define blue "\033[1;34m"
 #define red "\033[1;31m"
@@ -28,18 +29,29 @@
 class PmergeMe
 {
 private:
-	std::vector<int> insertion;
+	const static int MIN_CHUNK_SIZE = 5;
+	std::vector<int> insertionVec;
 	PmergeMe(const PmergeMe &ref);
 	PmergeMe &operator=(const PmergeMe &ref);
-
-public:
-	PmergeMe();
-	~PmergeMe();
-	bool CheckForValidInput(std::string &input);
-	std::string RemoveWhitespaces(std::string &input);
-	class ExpressionException : public std::exception
+	bool is_sorted();
+	void startSort(int startIdx, int endIdx);
+	void display();
+	void insertionRotate(size_t until_index);
+	void insertion(int startIdx, int endIdx);
+	void merge(int startIdx, int midIdx, int endIdx);
+	class InvalidInputException : public std::exception
 	{
 	public:
 		virtual const char *what() const throw();
 	};
+	class SortedNumbersException : public std::exception
+	{
+	public:
+		virtual const char *what() const throw();
+	};
+
+public:
+	PmergeMe();
+	~PmergeMe();
+	void FordJohnson(int _size, char **_argv);
 };

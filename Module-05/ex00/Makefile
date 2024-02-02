@@ -1,6 +1,6 @@
 NAME			=	Bureaucrat
 
-CC				:=	c++
+CXX				:=	c++
 
 CXXFLAGS		:=	-Wall -Wextra -Werror -std=c++98
 
@@ -11,7 +11,7 @@ OBJS			=	$(addprefix srcs/, $(SRCS:.cpp=.o))
 all: $(NAME)
 
 $(NAME):		$(OBJS)
-				$(CC) $(CXXFLAGS) -o $(NAME) $(OBJS)
+				$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
 clean:
 		@rm -rf $(OBJS)
