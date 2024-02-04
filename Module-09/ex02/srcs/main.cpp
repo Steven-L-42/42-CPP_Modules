@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:01:17 by slippert          #+#    #+#             */
-/*   Updated: 2024/02/02 12:48:52 by slippert         ###   ########.fr       */
+/*   Updated: 2024/02/04 16:27:29 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,4 @@ int main(int argc, char **argv)
 	}
 	return (0);
 }
+// ./PmergeMe `jot -r 21890 1 1000 | tr '\n' ' '`
