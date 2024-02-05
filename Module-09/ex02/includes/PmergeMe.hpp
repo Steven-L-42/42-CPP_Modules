@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/02/04 18:33:10 by slippert         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:58:44 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,8 @@
 
 #include <algorithm>
 #include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <cctype>
 #include <vector>
-#include <ctime>
-#include <set>
 #include <deque>
-#include <typeinfo>
 
 #define blue "\033[1;34m"
 #define red "\033[1;31m"
@@ -88,14 +81,24 @@ void PmergeMe::display(T container)
 	std::cout << std::endl;
 }
 
+/*
+ * The "merge" function merges two sorted subarrays within the given container.
+ * It assumes that the subarrays [startIndex, midIndex] and [midIndex + 1, endIndex]
+ * are already sorted. The merging is performed in a way that maintains the sorted order.
+ *
+ * @param container - The container holding the elements to be merged.
+ * @param startIndex - The start index of the first subarray to be merged.
+ * @param midIndex - The end index of the first subarray, also the start index of the second subarray.
+ * @param endIndex - The end index of the second subarray to be merged.
+ */
 template <class T>
 void PmergeMe::merge(T &container, int startIndex, int midIndex, int endIndex)
 {
 	int leftSize = midIndex - startIndex + 1;
 	int rightSize = endIndex - midIndex;
 
-	T leftVec(container.begin() + startIndex, container.begin() + startIndex + leftSize);
-	T rightVec(container.begin() + midIndex + 1, container.begin() + midIndex + 1 + rightSize);
+	T leftCon(container.begin() + startIndex, container.begin() + startIndex + leftSize);
+	T rightCon(container.begin() + midIndex + 1, container.begin() + midIndex + 1 + rightSize);
 
 	int leftIndex = 0;
 	int rightIndex = 0;
@@ -103,13 +106,13 @@ void PmergeMe::merge(T &container, int startIndex, int midIndex, int endIndex)
 	for (int i = startIndex; i <= endIndex; i++)
 	{
 		if (rightIndex == rightSize)
-			container[i] = leftVec[leftIndex], leftIndex++;
+			container[i] = leftCon[leftIndex], leftIndex++;
 		else if (leftIndex == leftSize)
-			container[i] = rightVec[rightIndex], rightIndex++;
-		else if (rightVec[rightIndex] > leftVec[leftIndex])
-			container[i] = leftVec[leftIndex], leftIndex++;
+			container[i] = rightCon[rightIndex], rightIndex++;
+		else if (rightCon[rightIndex] > leftCon[leftIndex])
+			container[i] = leftCon[leftIndex], leftIndex++;
 		else
-			container[i] = rightVec[rightIndex], rightIndex++;
+			container[i] = rightCon[rightIndex], rightIndex++;
 	}
 }
 
@@ -126,6 +129,17 @@ void PmergeMe::insertion(T &container, int startIndex, int endIndex)
 	}
 }
 
+/*
+ * The "startSort" function implements the recursive approach for the Mergesort algorithm.
+ * It sorts a subrange of a container from index "startIndex" to "endIndex".
+ * If the range is large enough, it is divided into two parts, each recursively sorted.
+ * Then, the sorted parts are merged using the "merge" function.
+ * If the range is small enough, the insertion sort algorithm "insertion" is used instead.
+ *
+ * @param container - The container holding the elements to be sorted.
+ * @param startIndex - The start index of the range to be sorted.
+ * @param endIndex - The end index of the range to be sorted.
+ */
 template <class T>
 void PmergeMe::startSort(T &container, int startIndex, int endIndex)
 {

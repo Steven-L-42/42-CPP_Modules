@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:23:57 by slippert          #+#    #+#             */
-/*   Updated: 2024/02/04 18:33:23 by slippert         ###   ########.fr       */
+/*   Updated: 2024/02/05 13:11:41 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ void PmergeMe::FordJohnson(int _size, char **_argv)
 	display(conVector);
 
 	displayTime(conVector, "std::vector<int>", durationVector);
-	displayTime(conDeque, "std::deque<int>", durationDeque);
+	displayTime(conDeque, "std::deque<int> ", durationDeque);
 }
