@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:23:57 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/26 12:14:36 by slippert         ###   ########.fr       */
+/*   Updated: 2024/02/05 14:34:12 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,15 @@ void RPN::Calculate(std::string &input, bool _activeDebug)
 	{
 		std::istringstream iss1(math.top());
 		math.pop();
-		int calced = 0;
-		int last = 0;
-		int first = 0;
+		float calced = 0;
+		float last = 0;
+		float first = 0;
 		char op = '\0';
-		if (iss1 >> last)
+		if (iss1 >> first)
 		{
 			std::istringstream iss2(math.top());
 			math.pop();
-			if (iss2 >> first)
+			if (iss2 >> last)
 			{
 				if (math.size() == 0)
 					throw(std::runtime_error("Error: there is missing number or operator for calculation.\n"));
@@ -74,12 +74,6 @@ void RPN::Calculate(std::string &input, bool _activeDebug)
 				math.pop();
 				iss3 >> op;
 			}
-		}
-		std::string tmp = "";
-		if (math.size() > 0)
-		{
-			tmp = math.top();
-			math.pop();
 		}
 		switch (op)
 		{
@@ -93,14 +87,17 @@ void RPN::Calculate(std::string &input, bool _activeDebug)
 			calced = first * last;
 			break;
 		case '/':
+			if (last == 0)
+				throw std::invalid_argument("Division by 0 not possible!");
 			calced = first / last;
 			break;
 		default:
+				throw std::invalid_argument("wrong operator " + std::string(1, op) + "!");
 			break;
 		}
 		if (_activeDebug)
 			std::cout << first << " " << op << " " << last << " = " << calced << std::endl;
-		if (tmp == "")
+		if (math.size() == 0)
 		{
 			std::cout << calced << std::endl;
 			break;
@@ -109,6 +106,5 @@ void RPN::Calculate(std::string &input, bool _activeDebug)
 		oss << calced;
 		std::string strValue = oss.str();
 		math.push(strValue);
-		math.push(tmp);
 	}
 }
