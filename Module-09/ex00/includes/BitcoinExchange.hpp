@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/02/14 12:15:01 by slippert         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:20:57 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ private:
 	void LoadExchangeRates();
 	bool CheckDelims(std::string &column);
 	bool CheckDateFormat(std::string &column);
+	bool CheckDateValid(std::string &column);
 	void CombineRateToInput();
 	void FindClosestDay(iter map, iter rates);
 	static bool isAlphabetical(char c);

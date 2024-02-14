@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:23:57 by slippert          #+#    #+#             */
-/*   Updated: 2024/02/14 15:19:33 by slippert         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:36:56 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void BitcoinExchange::LoadInputFile()
 			row.date = trimWhitespaces(row.date);
 			btc = trimWhitespaces(btc);
 
-			if (CheckDateFormat(row.date))
+			if (CheckDateFormat(row.date) || CheckDateValid(row.date))
 			{
 				row.btc = 0.0;
 				row.error = "Error: bad input";
@@ -257,11 +257,12 @@ void BitcoinExchange::CombineRateToInput()
 			continue;
 		iter it_closest;
 		int daysDiffer = std::numeric_limits<int>::max();
-
+		bool foundClosest = false;
 		for (it_rates = map_rates.begin(); it_rates != map_rates.end(); it_rates++)
 		{
 			if (it_map->second.date == it_rates->second.date)
 			{
+				foundClosest = true;
 				it_closest->second.rate = it_rates->second.rate;
 				break;
 			}
@@ -281,10 +282,20 @@ void BitcoinExchange::CombineRateToInput()
 					if (it_rates->second.rate < it_closest->second.rate && it_map->second.day > it_closest->second.day)
 						it_closest = it_rates;
 					it_rates--;
+					foundClosest = true;
 				}
 			}
 		}
-		it_map->second.rate = it_closest->second.rate;
+
+		if (!foundClosest)
+		{
+			if (it_map->second.year < map_rates.begin()->second.year)
+				it_map->second.rate = map_rates.begin()->second.rate;
+			else
+				it_map->second.rate = (--map_rates.cend())->second.rate;
+		}
+		else
+			it_map->second.rate = it_closest->second.rate;
 	}
 }
 
@@ -319,6 +330,39 @@ bool BitcoinExchange::CheckDelims(std::string &column)
 	if (count != 2)
 		return (false);
 	return (true);
+}
+
+bool BitcoinExchange::CheckDateValid(std::string &column)
+{
+	std::map<int, int> days;
+	days.insert(std::make_pair(1, 31));
+	days.insert(std::make_pair(2, 28));
+	days.insert(std::make_pair(3, 31));
+	days.insert(std::make_pair(4, 30));
+	days.insert(std::make_pair(5, 31));
+	days.insert(std::make_pair(6, 30));
+	days.insert(std::make_pair(7, 31));
+	days.insert(std::make_pair(8, 31));
+	days.insert(std::make_pair(9, 30));
+	days.insert(std::make_pair(10, 31));
+	days.insert(std::make_pair(11, 30));
+	days.insert(std::make_pair(12, 31));
+
+	int year = static_cast<int>(std::atoi(column.substr(0, 4).c_str()));
+	int month = static_cast<int>(std::atoi(column.substr(5, 2).c_str()));
+	int day = static_cast<int>(std::atoi(column.substr(8, 2).c_str()));
+
+	if ((month < 1 || month > 12))
+		return (true);
+
+	int maxDay = days[month];
+
+	if (month == 2 && year % 4 == 0)
+		maxDay++;
+
+	if (day < 1 || day > maxDay)
+		return (true);
+	return (false);
 }
 
 bool BitcoinExchange::CheckDateFormat(std::string &column)
