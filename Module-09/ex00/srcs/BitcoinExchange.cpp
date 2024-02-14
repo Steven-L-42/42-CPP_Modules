@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:23:57 by slippert          #+#    #+#             */
-/*   Updated: 2024/02/14 17:36:56 by slippert         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:51:50 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -357,7 +357,7 @@ bool BitcoinExchange::CheckDateValid(std::string &column)
 
 	int maxDay = days[month];
 
-	if (month == 2 && year % 4 == 0)
+	if (month == 2 && (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)))
 		maxDay++;
 
 	if (day < 1 || day > maxDay)
