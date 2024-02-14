@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:23:57 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/25 13:51:49 by slippert         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:19:33 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,77 @@ BitcoinExchange::BitcoinExchange(std::string &_input) : input(_input)
 
 BitcoinExchange::~BitcoinExchange() {}
 
+bool BitcoinExchange::isNumeric(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+bool BitcoinExchange::isAlphabetical(char c)
+{
+	return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+}
+
+bool BitcoinExchange::isNotANumberOrFloat(std::string &input)
+{
+	bool foundDot = false;
+	bool foundDigit = false;
+
+	for (std::string::iterator it = input.begin(); it != input.end(); it++)
+	{
+		if ((*it < '0' || *it > '9') && *it != '.' && *it != '-')
+			return true;
+
+		if (*it == '.')
+		{
+			if (foundDot || !foundDigit)
+				return true;
+			else
+				foundDot = true;
+		}
+
+		if (*it >= '0' && *it <= '9')
+			foundDigit = true;
+	}
+	return false;
+}
+
+bool BitcoinExchange::CheckLine(std::string &line, std::ifstream &file)
+{
+	std::string::iterator it;
+	std::getline(file, line);
+
+	it = std::find_if(line.begin(), line.end(), isNumeric);
+	if (it == line.end())
+		return (false);
+	it = std::find(it, line.end(), '|');
+	if (it == line.end())
+		return (false);
+	it = std::find_if(it, line.end(), isNumeric);
+	if (it == line.end())
+		return (false);
+	return (true);
+}
+
+bool BitcoinExchange::CheckHeader(std::string &line, std::ifstream &file)
+{
+	std::string::iterator it;
+	std::getline(file, line);
+
+	it = std::find_if(line.begin(), line.end(), isAlphabetical);
+	if (it == line.end())
+		return (false);
+	it = std::find(it, line.end(), '|');
+	if (it == line.end())
+		return (false);
+	it = std::find_if(it, line.end(), isAlphabetical);
+	if (it == line.end())
+		return (false);
+	return (true);
+}
+
 void BitcoinExchange::LoadInputFile()
 {
+	std::string line;
 	std::ifstream file;
 	if ((file.open(input.c_str()), file.fail()))
 	{
@@ -37,15 +106,24 @@ void BitcoinExchange::LoadInputFile()
 		return;
 	}
 
-	std::string line;
-	std::getline(file, line);
+	if (!CheckHeader(line, file))
+	{
+		std::cerr << "Error: header is missing or not valid." << std::endl;
+		return;
+	}
+
 	while (std::getline(file, line))
 	{
+		if (line.length() == 0)
+			continue;
 		CSVRow row;
 
 		std::istringstream lineStream(line);
+
 		row.error = "";
+		row.rate = 0;
 		std::string btc;
+
 		if (std::getline(lineStream, row.date, '|') && std::getline(lineStream, btc, '|'))
 		{
 			row.date = trimWhitespaces(row.date);
@@ -60,9 +138,22 @@ void BitcoinExchange::LoadInputFile()
 			else
 			{
 				long long_Number = static_cast<long>(std::atol(btc.c_str()));
-				if (long_Number < 0 || long_Number > INT_MAX)
+				if (btc.length() == 0)
 				{
-					if (long_Number > INT_MAX)
+					row.error = "Error: missing number.";
+					row.date = "";
+				}
+				else
+				{
+					if (isNotANumberOrFloat(btc))
+					{
+						row.error = "Error: is not number.";
+						row.date = "";
+					}
+				}
+				if ((long_Number <= 0 && !isNotANumberOrFloat(btc)) || long_Number >= 1000)
+				{
+					if (long_Number >= 1000)
 						row.error = "Error: too large a number.";
 					else
 						row.error = "Error: not a positive number.";
@@ -87,7 +178,13 @@ void BitcoinExchange::LoadInputFile()
 		else
 		{
 			row.btc = 0.0;
-			row.error = "Error: bad input";
+			if (std::find(line.begin(), line.end(), '|') != line.end())
+			{
+				row.error = "Error: missing number.";
+				row.date = "";
+			}
+			else
+				row.error = "Error: bad input";
 			map_input.insert(std::make_pair(map_input.size(), row));
 		}
 	}
@@ -103,6 +200,7 @@ void BitcoinExchange::LoadExchangeRates()
 	}
 	std::string line;
 	std::getline(file, line);
+
 	while (std::getline(file, line))
 	{
 		CSVRow row;
@@ -155,13 +253,16 @@ void BitcoinExchange::CombineRateToInput()
 
 	for (it_map = map_input.begin(); it_map != map_input.end(); it_map++)
 	{
+		if (it_map->second.error != "")
+			continue;
 		iter it_closest;
 		int daysDiffer = std::numeric_limits<int>::max();
+
 		for (it_rates = map_rates.begin(); it_rates != map_rates.end(); it_rates++)
 		{
 			if (it_map->second.date == it_rates->second.date)
 			{
-				it_map->second.rate = it_rates->second.rate;
+				it_closest->second.rate = it_rates->second.rate;
 				break;
 			}
 			else if (it_map->second.year == it_rates->second.year && it_map->second.month == it_rates->second.month)

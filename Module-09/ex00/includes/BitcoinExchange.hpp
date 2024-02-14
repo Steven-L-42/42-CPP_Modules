@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/25 13:23:57 by slippert         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:15:01 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,8 @@ private:
 	BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange &ref);
 	BitcoinExchange &operator=(const BitcoinExchange &ref);
-
-public:
-	BitcoinExchange(std::string &_input);
-	~BitcoinExchange();
+	bool CheckHeader(std::string &line, std::ifstream &file);
+	bool CheckLine(std::string &line, std::ifstream &file);
 	void StartExchange();
 	void LoadInputFile();
 	void LoadExchangeRates();
@@ -56,5 +54,12 @@ public:
 	bool CheckDateFormat(std::string &column);
 	void CombineRateToInput();
 	void FindClosestDay(iter map, iter rates);
+	static bool isAlphabetical(char c);
+	bool isNotANumberOrFloat(std::string &input);
+	static bool isNumeric(char c);
 	std::string trimWhitespaces(std::string &str);
+
+public:
+	BitcoinExchange(std::string &_input);
+	~BitcoinExchange();
 };

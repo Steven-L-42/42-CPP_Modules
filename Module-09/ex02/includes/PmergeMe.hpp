@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/02/05 12:58:44 by slippert         ###   ########.fr       */
+/*   Updated: 2024/02/14 11:09:58 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <vector>
 #include <deque>
+#include <cctype>
 
 #define blue "\033[1;34m"
 #define red "\033[1;31m"
@@ -57,7 +58,7 @@ private:
 public:
 	PmergeMe();
 	~PmergeMe();
-	void FordJohnson(int _size, char **_argv);
+	void FordJohnson(int _size, char **_argv, bool _display);
 };
 
 template <class T>

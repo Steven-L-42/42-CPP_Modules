@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:23:57 by slippert          #+#    #+#             */
-/*   Updated: 2024/02/05 13:11:41 by slippert         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:14:29 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,15 @@ const char *PmergeMe::SortedNumbersException::what() const throw()
 	return (msg.c_str());
 }
 
-void PmergeMe::FordJohnson(int _size, char **_argv)
+void PmergeMe::FordJohnson(int _size, char **_argv, bool _display)
 {
 	std::vector<int> conBefore;
 	for (int i = 1; i < _size; i++)
 	{
+		std::string tmp = std::string(_argv[i]);
+		bool allDigit = std::all_of(tmp.begin(), tmp.end(), ::isdigit);
 		int nbr = static_cast<int>(std::atoi(_argv[i]));
-		if (nbr <= 0)
+		if (!allDigit || nbr < 0)
 			throw(InvalidInputException());
 		conBefore.push_back(nbr);
 	}
@@ -42,16 +44,22 @@ void PmergeMe::FordJohnson(int _size, char **_argv)
 	if (std::is_sorted(conBefore.begin(), conBefore.end()))
 		throw(SortedNumbersException());
 
-	std::cout << blue << "Before:\t" << green;
-	display(conBefore);
+	if (_display)
+	{
+		std::cout << blue << "Before:\t" << green;
+		display(conBefore);
+	}
 
 	double durationVector;
 	double durationDeque;
 	templateSort(conVector, durationVector, _size, _argv);
 	templateSort(conDeque, durationDeque, _size, _argv);
 
-	std::cout << blue << "After:\t" << green;
-	display(conVector);
+	if (_display)
+	{
+		std::cout << blue << "After:\t" << green;
+		display(conVector);
+	}
 
 	displayTime(conVector, "std::vector<int>", durationVector);
 	displayTime(conDeque, "std::deque<int> ", durationDeque);

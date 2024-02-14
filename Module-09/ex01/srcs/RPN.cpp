@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:23:57 by slippert          #+#    #+#             */
-/*   Updated: 2024/02/05 14:34:12 by slippert         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:17:57 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,70 +41,64 @@ std::string RPN::RemoveWhitespaces(std::string &input)
 
 void RPN::CreateCalcStack(std::string &input)
 {
-	std::reverse(input.begin(), input.end());
-	input.erase(std::remove_if(input.begin(), input.end(), ::isspace), input.end());
-
 	for (std::string::iterator it = input.begin(); it != input.end(); it++)
 		math.push(std::string(1, *it));
 	if (math.size() < 3)
 		throw(std::logic_error("Error: input requires at least 3 characters!\nExample: ./RPN \"1 2 +\"\n"));
 }
 
+bool RPN::isNumber(std::string &item, float &nbr)
+{
+	std::istringstream in(item);
+	in >> nbr;
+	if (in.fail())
+		return (false);
+	return (true);
+}
+
 void RPN::Calculate(std::string &input, bool _activeDebug)
 {
 	CheckForValidInput(input);
 	CreateCalcStack(input);
-	while (math.size() > 0)
+	std::stringstream streamInput(input);
+	std::string item;
+	float nbr;
+	std::stack<float> stackFloat;
+	std::string ops = "+-*/";
+	while (std::getline(streamInput, item, ' '))
 	{
-		std::istringstream iss1(math.top());
-		math.pop();
-		float calced = 0;
-		float last = 0;
-		float first = 0;
-		char op = '\0';
-		if (iss1 >> first)
+		if (isNumber(item, nbr))
+			stackFloat.push(nbr);
+		else if (std::find(ops.begin(), ops.end(), item[0]) != ops.end())
 		{
-			std::istringstream iss2(math.top());
-			math.pop();
-			if (iss2 >> last)
+			if (stackFloat.size() < 2)
+				throw std::invalid_argument("Not valid polish notation!\n");
+			float first = stackFloat.top();
+			stackFloat.pop();
+			float last = stackFloat.top();
+			stackFloat.pop();
+			switch (item[0])
 			{
-				if (math.size() == 0)
-					throw(std::runtime_error("Error: there is missing number or operator for calculation.\n"));
-				std::istringstream iss3(math.top());
-				math.pop();
-				iss3 >> op;
+			case '+':
+				stackFloat.push(last + first);
+				break;
+			case '-':
+				stackFloat.push(last - first);
+				break;
+			case '*':
+				stackFloat.push(last * first);
+				break;
+			case '/':
+				if (last == 0)
+					throw std::invalid_argument("Division by 0 not possible!\n");
+				stackFloat.push(last / first);
+				break;
 			}
+			if (_activeDebug)
+				std::cout << last << " " << item << " " << first << " = " << stackFloat.top() << std::endl;
 		}
-		switch (op)
-		{
-		case '+':
-			calced = first + last;
-			break;
-		case '-':
-			calced = first - last;
-			break;
-		case '*':
-			calced = first * last;
-			break;
-		case '/':
-			if (last == 0)
-				throw std::invalid_argument("Division by 0 not possible!");
-			calced = first / last;
-			break;
-		default:
-				throw std::invalid_argument("wrong operator " + std::string(1, op) + "!");
-			break;
-		}
-		if (_activeDebug)
-			std::cout << first << " " << op << " " << last << " = " << calced << std::endl;
-		if (math.size() == 0)
-		{
-			std::cout << calced << std::endl;
-			break;
-		}
-		std::ostringstream oss;
-		oss << calced;
-		std::string strValue = oss.str();
-		math.push(strValue);
 	}
+	if (stackFloat.size() != 1)
+		throw std::invalid_argument("Not enough mathematical operators!\n");
+	std::cout << stackFloat.top() << std::endl;
 }

@@ -23,5 +23,5 @@ re:		fclean all
 
 test:
 		@make re
-		@./$(NAME) input.csv
+		@./$(NAME) input.txt
 		@make fclean

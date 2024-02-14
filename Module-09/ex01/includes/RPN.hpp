@@ -6,7 +6,7 @@
 /*   By: slippert <slippert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:02:05 by slippert          #+#    #+#             */
-/*   Updated: 2024/01/26 12:13:33 by slippert         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:17:54 by slippert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ public:
 	void CheckForValidInput(std::string &input);
 	void Calculate(std::string &input, bool _activeDebug);
 	void CreateCalcStack(std::string &input);
+	bool isNumber(std::string &item, float &nbr);
 	std::string RemoveWhitespaces(std::string &input);
 	class ExpressionException : public std::exception
 	{
